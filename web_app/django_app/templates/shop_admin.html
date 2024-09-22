@@ -1,0 +1,40 @@
+{% extends 'main/base_admin.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="untree_co-section product-section before-footer-section">
+        <div class="container">
+            <div class="row">
+                <h1>Furniture</h1>
+                {% if message == "successfully" %}
+                    <h1>Created successfully</h1>
+                {% endif %}
+                <!-- Create form -->
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button href="create" type="submit">Create</button>
+                </form>
+                <!-- Furniture list -->
+                <div class="row">
+                    {% if message == "delete" %}
+                        <h3>Deleted successfully </h3>
+                    {% endif %}
+                    {% for furniture in furnitures %}
+                        <div class="col-12 col-md-4 col-lg-3 mb-5">
+                            <img src="{{ furniture.image_url }}" class="img-fluid product-thumbnail">
+                            <h3>{{ furniture.product.name }}</h3>
+                            <p>{{ furniture.product.description }}</p>
+                            <strong>${{ furniture.product.id }}</strong>
+                            <a href="{% url 'furniture_update' furniture.product.id %}" class="btn btn-primary">Update</a>
+                            <a href="{% url 'furniture_delete' furniture.product.id %}" class="btn btn-primary">Delete</a>
+                            {% csrf_token %}
+                        </form>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

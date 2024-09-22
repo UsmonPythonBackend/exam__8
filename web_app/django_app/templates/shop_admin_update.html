@@ -1,0 +1,16 @@
+{% extends 'main/base_admin.html' %}
+{% load static %}
+{% block content %}
+
+    <h1>Update Furniture</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% if message == "successfully" %}
+        <h3>Update successfully</h3>
+        {% endif %}
+        {{ form.as_p }}
+        {{ furniture.product.name }}
+        <button type="submit">Update</button>
+    </form>
+
+{% endblock %}

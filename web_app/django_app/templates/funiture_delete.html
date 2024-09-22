@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+</head>
+<body>
+
+    {% if message == "delete" %}
+        <h3>Deleted {{furniture.message.delete}} successfully</h3>
+    {% endif %}
+    <form method="post">
+                    {% csrf_token %}
+                    <button  href="DELETE" type="submit">Delete</button>
+                </form>
+</body>
+</html>
